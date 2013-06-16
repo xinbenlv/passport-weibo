@@ -1,31 +1,31 @@
 var vows = require('vows');
 var assert = require('assert');
 var util = require('util');
-var GitHubStrategy = require('passport-github/strategy');
+var WeiboStrategy = require('passport-weibo/strategy');
 
 
-vows.describe('GitHubStrategy').addBatch({
+vows.describe('WeiboStrategy').addBatch({
   
   'strategy': {
     topic: function() {
-      return new GitHubStrategy({
+      return new WeiboStrategy({
         clientID: 'ABC123',
         clientSecret: 'secret'
       },
       function() {});
     },
     
-    'should be named github': function (strategy) {
-      assert.equal(strategy.name, 'github');
+    'should be named weibo': function (strategy) {
+      assert.equal(strategy.name, 'weibo');
     },
     'should have default user agent': function (strategy) {
-      assert.equal(strategy._oauth2._customHeaders['User-Agent'], 'passport-github');
+      assert.equal(strategy._oauth2._customHeaders['User-Agent'], 'passport-weibo');
     },
   },
   
   'strategy with user agent option': {
     topic: function() {
-      return new GitHubStrategy({
+      return new WeiboStrategy({
         clientID: 'ABC123',
         clientSecret: 'secret',
         userAgent: 'example.com'
@@ -40,7 +40,7 @@ vows.describe('GitHubStrategy').addBatch({
   
   'strategy with user agent option in custom headers': {
     topic: function() {
-      return new GitHubStrategy({
+      return new WeiboStrategy({
         clientID: 'ABC123',
         clientSecret: 'secret',
         customHeaders: { 'User-Agent': 'example2.com' }
@@ -55,7 +55,7 @@ vows.describe('GitHubStrategy').addBatch({
   
   'strategy with user agent option in custom headers and explicit option': {
     topic: function() {
-      return new GitHubStrategy({
+      return new WeiboStrategy({
         clientID: 'ABC123',
         clientSecret: 'secret',
         customHeaders: { 'User-Agent': 'example2.com' },
@@ -71,22 +71,24 @@ vows.describe('GitHubStrategy').addBatch({
   
   'strategy when loading user profile': {
     topic: function() {
-      var strategy = new GitHubStrategy({
+      var strategy = new WeiboStrategy({
         clientID: 'ABC123',
         clientSecret: 'secret'
       },
       function() {});
       
       // mock
-      strategy._oauth2.get = function(url, accessToken, callback) {
-        if (url == 'https://api.github.com/user') {
-          var body = '{ "login": "octocat", "id": 1, "name": "monalisa octocat", "email": "octocat@github.com", "html_url": "https://github.com/octocat" }';
+      strategy._oauth2.getProtectedResource = function (url, accessToken, callback) {
+        if (url === 'https://api.weibo.com/2/account/get_uid.json') {
+          var body = '{ "uid": 1 }'; 
+          callback(null, body, undefined);
+        } else if (url === 'https://api.weibo.com/2/users/show.json?uid=1') {
+          var body = '{ "screenName": "monalisa octocat" }';
           callback(null, body, undefined);
         } else {
-          callback(new Error('Incorrect user profile URL'));
+          callback(new Error('Incorrect user profile URL:' + url));
         }
       }
-      
       return strategy;
     },
     
@@ -106,13 +108,9 @@ vows.describe('GitHubStrategy').addBatch({
         assert.isNull(err);
       },
       'should load profile' : function(err, profile) {
-        assert.equal(profile.provider, 'github');
-        assert.equal(profile.id, '1');
-        assert.equal(profile.username, 'octocat');
-        assert.equal(profile.displayName, 'monalisa octocat');
-        assert.equal(profile.profileUrl, 'https://github.com/octocat');
-        assert.lengthOf(profile.emails, 1);
-        assert.equal(profile.emails[0].value, 'octocat@github.com');
+        assert.equal(profile.provider, 'weibo');
+        assert.equal(profile.uid, '1');
+        assert.equal(profile.screenName, 'monalisa octocat');
       },
       'should set raw property' : function(err, profile) {
         assert.isString(profile._raw);
@@ -122,72 +120,17 @@ vows.describe('GitHubStrategy').addBatch({
       },
     },
   },
-  
-  'strategy when loading user profile from custom URL': {
-    topic: function() {
-      var strategy = new GitHubStrategy({
-        clientID: 'ABC123',
-        clientSecret: 'secret',
-        userProfileURL: 'https://github.corpDomain/api/v3/user',
-      },
-      function() {});
-      
-      // mock
-      strategy._oauth2.get = function(url, accessToken, callback) {
-        if (url == 'https://github.corpDomain/api/v3/user') {
-          var body = '{ "login": "octocat", "id": 1, "name": "monalisa octocat", "email": "octocat@github.com", "html_url": "https://github.com/octocat" }';
-          callback(null, body, undefined);
-        } else {
-          callback(new Error('Incorrect user profile URL'));
-        }
-      }
-      
-      return strategy;
-    },
-    
-    'when told to load user profile': {
-      topic: function(strategy) {
-        var self = this;
-        function done(err, profile) {
-          self.callback(err, profile);
-        }
-        
-        process.nextTick(function () {
-          strategy.userProfile('access-token', done);
-        });
-      },
-      
-      'should not error' : function(err, req) {
-        assert.isNull(err);
-      },
-      'should load profile' : function(err, profile) {
-        assert.equal(profile.provider, 'github');
-        assert.equal(profile.id, '1');
-        assert.equal(profile.username, 'octocat');
-        assert.equal(profile.displayName, 'monalisa octocat');
-        assert.equal(profile.profileUrl, 'https://github.com/octocat');
-        assert.lengthOf(profile.emails, 1);
-        assert.equal(profile.emails[0].value, 'octocat@github.com');
-      },
-      'should set raw property' : function(err, profile) {
-        assert.isString(profile._raw);
-      },
-      'should set json property' : function(err, profile) {
-        assert.isObject(profile._json);
-      },
-    },
-  },
-  
+   
   'strategy when loading user profile and encountering an error': {
     topic: function() {
-      var strategy = new GitHubStrategy({
+      var strategy = new WeiboStrategy({
         clientID: 'ABC123',
         clientSecret: 'secret'
       },
       function() {});
       
       // mock
-      strategy._oauth2.get = function(url, accessToken, callback) {
+      strategy._oauth2.getProtectedResource = function(url, accessToken, callback) {
         callback(new Error('something-went-wrong'));
       }
       

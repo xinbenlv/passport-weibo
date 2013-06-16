@@ -1,10 +1,10 @@
 var express = require('express')
   , passport = require('passport')
   , util = require('util')
-  , GitHubStrategy = require('passport-github').Strategy;
+  , WeiboStrategy = require('passport-weibo').Strategy;
 
-var GITHUB_CLIENT_ID = "--insert-github-client-id-here--"
-var GITHUB_CLIENT_SECRET = "--insert-github-client-secret-here--";
+var WEIBO_CLIENT_ID = "--insert-weibo-client-id-here--"
+var WEIBO_CLIENT_SECRET = "--insert-weibo-client-secret-here--";
 
 
 // Passport session setup.
@@ -12,7 +12,7 @@ var GITHUB_CLIENT_SECRET = "--insert-github-client-secret-here--";
 //   serialize users into and deserialize users out of the session.  Typically,
 //   this will be as simple as storing the user ID when serializing, and finding
 //   the user by ID when deserializing.  However, since this example does not
-//   have a database of user records, the complete GitHub profile is serialized
+//   have a database of user records, the complete Weibo profile is serialized
 //   and deserialized.
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -23,22 +23,22 @@ passport.deserializeUser(function(obj, done) {
 });
 
 
-// Use the GitHubStrategy within Passport.
+// Use the WeiboStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
-//   credentials (in this case, an accessToken, refreshToken, and GitHub
+//   credentials (in this case, an accessToken, refreshToken, and Weibo
 //   profile), and invoke a callback with a user object.
-passport.use(new GitHubStrategy({
-    clientID: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/github/callback"
+passport.use(new WeiboStrategy({
+    clientID: WEIBO_CLIENT_ID,
+    clientSecret: WEIBO_CLIENT_SECRET,
+    callbackURL: "http://127.0.0.1:3000/auth/weibo/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
       
-      // To keep the example simple, the user's GitHub profile is returned to
+      // To keep the example simple, the user's Weibo profile is returned to
       // represent the logged-in user.  In a typical application, you would want
-      // to associate the GitHub account with a user record in your database,
+      // to associate the Weibo account with a user record in your database,
       // and return that user instead.
       return done(null, profile);
     });
@@ -80,25 +80,25 @@ app.get('/login', function(req, res){
   res.render('login', { user: req.user });
 });
 
-// GET /auth/github
+// GET /auth/weibo
 //   Use passport.authenticate() as route middleware to authenticate the
-//   request.  The first step in GitHub authentication will involve redirecting
-//   the user to github.com.  After authorization, GitHubwill redirect the user
-//   back to this application at /auth/github/callback
-app.get('/auth/github',
-  passport.authenticate('github'),
+//   request.  The first step in Weibo authentication will involve redirecting
+//   the user to weibo.com.  After authorization, Weibo will redirect the user
+//   back to this application at /auth/weibo/callback
+app.get('/auth/weibo',
+  passport.authenticate('weibo'),
   function(req, res){
-    // The request will be redirected to GitHub for authentication, so this
+    // The request will be redirected to Weibo for authentication, so this
     // function will not be called.
   });
 
-// GET /auth/github/callback
+// GET /auth/weibo/callback
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/github/callback', 
-  passport.authenticate('github', { failureRedirect: '/login' }),
+app.get('/auth/weibo/callback', 
+  passport.authenticate('weibo', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
