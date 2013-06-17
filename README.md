@@ -75,5 +75,5 @@ For a complete, working example, refer to the [login example](https://github.com
 
 [The MIT License](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2013 Jared Hanson <[http://zzn.im/](http://www.zzn.im/)>
+Copyright (c) 2013 Zainan Victor Zhou <[http://zzn.im/](http://www.zzn.im/)>
 
