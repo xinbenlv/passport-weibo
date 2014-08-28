@@ -83,7 +83,7 @@ vows.describe('WeiboStrategy').addBatch({
           var body = '{ "uid": 1 }'; 
           callback(null, body, undefined);
         } else if (url === 'https://api.weibo.com/2/users/show.json?uid=1') {
-          var body = '{ "screenName": "monalisa octocat" }';
+          var body = '{ "idstr": "1", "screen_name": "monalisa octocat" }';
           callback(null, body, undefined);
         } else {
           callback(new Error('Incorrect user profile URL:' + url));
@@ -109,11 +109,11 @@ vows.describe('WeiboStrategy').addBatch({
       },
       'should load profile' : function(err, profile) {
         assert.equal(profile.provider, 'weibo');
-        assert.equal(profile.uid, '1');
-        assert.equal(profile.screenName, 'monalisa octocat');
+        assert.equal(profile.id, '1');
+        assert.equal(profile.displayName, 'monalisa octocat');
       },
       'should set raw property' : function(err, profile) {
-        assert.isString(profile._raw);
+        assert.isObject(profile._raw);
       },
       'should set json property' : function(err, profile) {
         assert.isObject(profile._json);
