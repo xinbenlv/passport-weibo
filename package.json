@@ -1,7 +1,7 @@
 {
   "name": "passport-weibo",
-  "version": "0.1.0",
-  "description": "Renren authentication strategy for Passport.",
+  "version": "0.1.1",
+  "description": "Renren authentication strategy for Passport. Supports Weibo API 2.0",
   "keywords": ["passport", "weibo", "auth", "authn", "authentication", "identity"],
   "repository": {
     "type": "git",
