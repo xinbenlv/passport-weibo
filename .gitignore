@@ -2,5 +2,8 @@
 .DS_Store
 
 # Node.js
-node_modules/*
+node_modules
 npm-debug.log
+
+
+.idea

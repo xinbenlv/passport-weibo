@@ -2,9 +2,8 @@
   "name": "passport-weibo-examples-login",
   "version": "0.0.0",
   "dependencies": {
-    "express": ">= 0.0.0",
+    "express": "3.12.0",
     "ejs": ">= 0.0.0",
     "passport": ">= 0.0.0",
-    "passport-weibo": ">= 0.0.0"
   }
 }

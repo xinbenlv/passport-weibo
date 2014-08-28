@@ -3,8 +3,8 @@ var express = require('express')
   , util = require('util')
   , WeiboStrategy = require('passport-weibo').Strategy;
 
-var WEIBO_CLIENT_ID = "--insert-weibo-client-id-here--"
-var WEIBO_CLIENT_SECRET = "--insert-weibo-client-secret-here--";
+var WEIBO_CLIENT_ID = "154742567"
+var WEIBO_CLIENT_SECRET = "0ddb294e6198b03c8495b9cc4c017bc5";
 
 
 // Passport session setup.
@@ -30,7 +30,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new WeiboStrategy({
     clientID: WEIBO_CLIENT_ID,
     clientSecret: WEIBO_CLIENT_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/weibo/callback"
+    callbackURL: "http://localtest.zzn.im:3000/auth/weibo/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
