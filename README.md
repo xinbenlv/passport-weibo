@@ -1,8 +1,6 @@
 # Passport-Weibo
 
-copied and revised from passport-weibo
-
-[Passport](http://passportjs.org/) strategy for authenticating with [Weibo](https://weibo.com/)
+[PassportJS](http://passportjs.org/) strategy for authenticating with Sina [Weibo](https://weibo.com/)
 using the OAuth 2.0 API.
 
 This module lets you authenticate using Weibo in your Node.js applications.
@@ -13,7 +11,7 @@ unobtrusively integrated into any application or framework that supports
 
 ## Install
 
-    $ npm install passport-weibo
+    $ npm install passport-weibo --save
 
 ## Usage
 
@@ -67,7 +65,7 @@ For a complete, working example, refer to the [login example](https://github.com
 
 ## Credits
 
-  - [Jared Hanson](http://github.com/jaredhanson)
+  - [Jared Hanson](http://github.com/jaredhanson) for `passport-github`
   - [Zainan Victor Zhou](http://github.com/xinbenv)
 
 
