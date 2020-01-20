@@ -3,8 +3,8 @@ var express = require('express')
   , util = require('util')
   , WeiboStrategy = require('../../').Strategy;
 
-var WEIBO_CLIENT_ID = "1768109599"
-var WEIBO_CLIENT_SECRET = "699b09da453deb16e00e94eb9cfb6522";
+var WEIBO_CLIENT_ID = "--CLIENT_ID--";
+var WEIBO_CLIENT_SECRET = "--CLIENT_SECRET--";
 
 
 // Passport session setup.
