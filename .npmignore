@@ -15,4 +15,4 @@ npm-debug.log
 # Git
 .git*
 
-./idea
+./idea/
