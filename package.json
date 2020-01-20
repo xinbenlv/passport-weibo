@@ -1,7 +1,7 @@
 {
   "name": "passport-weibo",
   "version": "0.1.2",
-  "description": "Renren authentication strategy for Passport. Supports Weibo API 2.0",
+  "description": "Weibo authentication strategy for PassportJS. Supports Weibo API 2.0",
   "keywords": ["passport", "weibo", "auth", "authn", "authentication", "identity"],
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
   },
   "author": {
     "name": "Zainan Victor Zhou",
-    "email": "xinbenlv@gmail.com",
+    "email": "zzn@zzn.im",
     "url": "http://www.zzn.im/"
   },
   "licenses": [ {
