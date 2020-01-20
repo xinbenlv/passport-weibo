@@ -1,10 +1,10 @@
 var express = require('express')
   , passport = require('passport')
   , util = require('util')
-  , WeiboStrategy = require('passport-weibo').Strategy;
+  , WeiboStrategy = require('../../').Strategy;
 
-var WEIBO_CLIENT_ID = "--insert-weibo-client-id-here--"
-var WEIBO_CLIENT_SECRET = "--insert-weibo-client-secret-here--";
+var WEIBO_CLIENT_ID = "1768109599"
+var WEIBO_CLIENT_SECRET = "699b09da453deb16e00e94eb9cfb6522";
 
 
 // Passport session setup.
@@ -35,7 +35,7 @@ passport.use(new WeiboStrategy({
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      
+
       // To keep the example simple, the user's Weibo profile is returned to
       // represent the logged-in user.  In a typical application, you would want
       // to associate the Weibo account with a user record in your database,
@@ -97,7 +97,7 @@ app.get('/auth/weibo',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/weibo/callback', 
+app.get('/auth/weibo/callback',
   passport.authenticate('weibo', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
