@@ -1,8 +1,15 @@
 {
   "name": "passport-weibo",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Weibo authentication strategy for PassportJS. Supports Weibo API 2.0",
-  "keywords": ["passport", "weibo", "auth", "authn", "authentication", "identity"],
+  "keywords": [
+    "passport",
+    "weibo",
+    "auth",
+    "authn",
+    "authentication",
+    "identity"
+  ],
   "repository": {
     "type": "git",
     "url": "http://github.com/xinbenlv/passport-weibo.git"
@@ -15,20 +22,24 @@
     "email": "zzn@zzn.im",
     "url": "http://www.zzn.im/"
   },
-  "licenses": [ {
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/MIT" 
-  } ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
   "main": "./lib/passport-weibo",
   "dependencies": {
-    "pkginfo": "0.2.x",
-    "passport-oauth": "0.1.x"
+    "pkginfo": "0.4.x",
+    "passport-oauth": "1.0.0"
   },
   "devDependencies": {
-    "vows": "0.6.x"
+    "vows": "0.6.4"
   },
   "scripts": {
     "test": "NODE_PATH=lib node_modules/.bin/vows test/*-test.js"
   },
-  "engines": { "node": ">= 0.4.0" }
+  "engines": {
+    "node": ">=8"
+  }
 }
