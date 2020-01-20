@@ -1,6 +1,6 @@
 {
   "name": "passport-weibo-examples-login",
-  "version": "0.2.0",
+  "version": "0.2.0-beta.0",
   "scripts": {
     "start": "node app.js"
   },
@@ -8,6 +8,6 @@
     "ejs": ">= 2.5.2",
     "express": "3.12.0",
     "passport": ">= 0.3.2",
-    "passport-weibo": ">= 0.0.0"
+    "passport-weibo": ">= 0.2.0"
   }
 }
