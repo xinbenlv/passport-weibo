@@ -1,24 +1,6 @@
-SOURCES = lib/**/*.js
+include node_modules/make-node/main.mk
 
-# ==============================================================================
-# Node Tests
-# ==============================================================================
+MOCHAFLAGS = --require ./test/bootstrap/node
 
-VOWS = ./node_modules/.bin/vows
-TESTS ?= test/*-test.js
-
-test:
-	@NODE_ENV=test NODE_PATH=lib $(VOWS) $(TESTS)
-
-# ==============================================================================
-# Static Analysis
-# ==============================================================================
-
-JSHINT = jshint
-
-hint: lint
-lint:
-	$(JSHINT) $(SOURCES)
-
-
-.PHONY: test hint lint
+# Perform self-tests.
+check: test
