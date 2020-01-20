@@ -17,3 +17,5 @@ npm-debug.log
 
 .idea/
 renovate.json
+.travis.yml
+.github/
