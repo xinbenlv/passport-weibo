@@ -21,7 +21,7 @@
   } ],
   "main": "./lib/passport-weibo",
   "dependencies": {
-    "pkginfo": "0.2.x",
+    "pkginfo": "0.4.x",
     "passport-oauth": "0.1.x"
   },
   "devDependencies": {
