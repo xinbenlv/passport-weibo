@@ -1,5 +1,7 @@
 # Passport-Weibo
 
+[![Build Status](https://travis-ci.org/xinbenlv/passport-weibo.svg?branch=master)](https://travis-ci.org/xinbenlv/passport-weibo)
+
 [PassportJS](http://passportjs.org/) strategy for authenticating with Sina [Weibo](https://weibo.com/)
 using the OAuth 2.0 API.
 
@@ -61,7 +63,7 @@ For a complete, working example, refer to the [login example](https://github.com
     $ npm install --dev
     $ make test
 
-[![Build Status](https://secure.travis-ci.org/xinbenlv/passport-weibo.png)](http://travis-ci.org/xinbenlv/passport-weibo)
+
 
 ## Credits
 
