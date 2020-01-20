@@ -10,6 +10,7 @@
     "authentication",
     "identity"
   ],
+  "main": "./lib",
   "repository": {
     "type": "git",
     "url": "http://github.com/xinbenlv/passport-weibo.git"
@@ -28,16 +29,17 @@
       "url": "http://www.opensource.org/licenses/MIT"
     }
   ],
-  "main": "./lib/passport-weibo",
   "dependencies": {
-    "pkginfo": "0.4.x",
-    "passport-oauth": "1.0.0"
+    "passport-oauth2": "^1.5.0"
   },
   "devDependencies": {
-    "vows": "0.6.4"
+    "chai": "^4.2.0",
+    "chai-passport-strategy": "^1.0.1",
+    "make-node": "^0.4.6",
+    "mocha": "^7.0.0"
   },
   "scripts": {
-    "test": "NODE_PATH=lib node_modules/.bin/vows test/*-test.js"
+    "test": "make test"
   },
   "engines": {
     "node": ">=8"
