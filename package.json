@@ -31,7 +31,7 @@
     "chai": "4.2.0",
     "chai-passport-strategy": "1.0.1",
     "make-node": "0.4.6",
-    "mocha": "7.0.0"
+    "mocha": "10.7.3"
   },
   "scripts": {
     "test": "make test"
