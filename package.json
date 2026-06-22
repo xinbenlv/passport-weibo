@@ -13,10 +13,10 @@
   "main": "./lib",
   "repository": {
     "type": "git",
-    "url": "http://github.com/xinbenlv/passport-weibo.git"
+    "url": "https://github.com/xinbenlv/passport-weibo.git"
   },
   "bugs": {
-    "url": "http://github.com/xinbenlv/passport-weibo/issues"
+    "url": "https://github.com/xinbenlv/passport-weibo/issues"
   },
   "author": {
     "name": "Zainan Victor Zhou",
